@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<AnchorPane fx:id="anchor" prefHeight="1000.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <children>
-      <VBox fx:id="vbox" prefHeight="400.0" prefWidth="601.0">
+      <VBox fx:id="vbox" prefHeight="1000.0" prefWidth="800.0">
          <children>
             <MenuBar>
               <menus>
@@ -30,7 +30,7 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <TextArea prefHeight="376.0" prefWidth="601.0" />
+            <TextArea prefHeight="1000.0" prefWidth="800.0" />
          </children>
       </VBox>
    </children>
