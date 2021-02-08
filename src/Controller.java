@@ -8,7 +8,7 @@ public class Controller {
     public AnchorPane anchor;
     public VBox vbox;
 
-    @FXML public void initialize(){
+    public void initialize(){
         vbox.prefWidthProperty().bind(anchor.widthProperty());
         vbox.prefHeightProperty().bind(anchor.heightProperty());
     }
