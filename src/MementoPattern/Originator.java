@@ -8,10 +8,12 @@ public class Originator {
     }
 
     public Memento saveState(){
+
         return new Memento(currentState);
     }
 
     public void setState(Memento memento){
+        System.out.println("heello from set state");
         currentState = memento.getState();
     }
 }

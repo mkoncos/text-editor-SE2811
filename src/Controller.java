@@ -29,17 +29,16 @@ public class Controller {
                 if ((event.getCode() == KeyCode.Z || event.getCode() == KeyCode.Y)
                         && event.isShortcutDown()) {
                     event.consume();
-                    String textAreaText = textArea.getText();
                     if (event.getCode() == KeyCode.Z && event.isShortcutDown()){
                         System.out.println("we got here");
                         undo();
                         System.out.println("then here");
                     } else if (event.getCode() == KeyCode.Y && event.isShortcutDown()){
                         redo();
-                    } else if (event.getCode() == KeyCode.SPACE){
-                        newState();
                     }
 
+                } else if (event.getCode() == KeyCode.SPACE || event.getCode() == KeyCode.ENTER) {
+                    newState();
                 }
 
             }
