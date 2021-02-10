@@ -14,7 +14,6 @@ public class Caretaker {
     }
 
     public void addUndo(Memento undo){
-
         undos.addFirst(undo);
         undoSize++;
         if(undoSize > MAX_UNDO_AMOUNT){
@@ -34,5 +33,7 @@ public class Caretaker {
         return redos.removeFirst();
     }
 
-
+    public void clearRedos(){
+        redos.clear();
+    }
 }

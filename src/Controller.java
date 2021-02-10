@@ -47,6 +47,7 @@ public class Controller {
 
     public void newState(){
         caretaker.addUndo(originator.saveState());
+        caretaker.clearRedos();
     }
 
     public void undo(){
