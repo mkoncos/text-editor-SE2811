@@ -32,4 +32,8 @@ public class Caretaker {
     public Memento popRedo(){
         return redos.removeFirst();
     }
+
+    public void clearRedos(){
+        redos.clear();
+    }
 }
