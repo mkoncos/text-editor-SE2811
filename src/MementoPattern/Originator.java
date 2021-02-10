@@ -7,7 +7,7 @@ public class Originator {
         return currentState;
     }
 
-    public Memento saveState(String currentState){
+    public Memento saveState(){
         return new Memento(currentState);
     }
 
