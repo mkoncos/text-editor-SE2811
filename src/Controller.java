@@ -1,6 +1,6 @@
 import MementoPattern.Caretaker;
+import MementoPattern.Memento;
 import MementoPattern.Originator;
-import com.sun.org.apache.xpath.internal.operations.Or;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
@@ -32,8 +32,14 @@ public class Controller {
                         && event.isShortcutDown()) {
                     event.consume();
                     String textAreaText = textArea.getText();
-                    if (event.getCode() == KeyCode.Z){
+                    if (event.getCode() == KeyCode.Z && event.isShortcutDown()){
+                        System.out.println("we got here");
                         undo();
+                        System.out.println("then here");
+                    } else if (event.getCode() == KeyCode.Y && event.isShortcutDown()){
+                        redo();
+                    } else if (event.getCode() == KeyCode.SPACE){
+                        newState();
                     }
 
                 }
@@ -46,6 +52,7 @@ public class Controller {
     }
 
     public void newState(){
+        originator.setState(new Memento(textArea.getText()));
         caretaker.addUndo(originator.saveState());
         caretaker.clearRedos();
     }
