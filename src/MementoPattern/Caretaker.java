@@ -34,7 +34,5 @@ public class Caretaker {
         return redos.removeFirst();
     }
 
-    public void addRedo(Memento redo){
-        redos.addFirst(redo);
-    }
+
 }
