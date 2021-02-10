@@ -12,6 +12,11 @@ public class Caretaker {
     }
 
     public void addUndo(Memento undo){
+
         undos.addFirst(undo);
+    }
+
+    public void addRedo(Memento redo){
+        redos.addFirst(redo);
     }
 }
