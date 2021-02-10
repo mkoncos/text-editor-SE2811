@@ -30,7 +30,7 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <TextArea prefHeight="1000.0" prefWidth="800.0" />
+            <TextArea fx:id="textArea" prefHeight="1000.0" prefWidth="800.0" />
          </children>
       </VBox>
    </children>
