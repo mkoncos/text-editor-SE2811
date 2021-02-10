@@ -21,6 +21,14 @@ public class Caretaker {
         }
     }
 
+    public boolean hasUndos(){
+        return !undos.isEmpty();
+    }
+
+    public boolean hasRedos(){
+        return !redos.isEmpty();
+    }
+
     public Memento popUndo(){
         return undos.removeFirst();
     }

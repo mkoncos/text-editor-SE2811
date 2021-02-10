@@ -1,7 +1,5 @@
 package MementoPattern;
 
-import java.util.Collection;
-
 public class Memento {
     private String state;
 
@@ -12,8 +10,6 @@ public class Memento {
     public String getState() {
         return state;
     }
-
-
 
     public void setState(String state) {
         this.state = state;

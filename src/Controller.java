@@ -11,8 +11,6 @@ import javafx.scene.layout.VBox;
 
 public class Controller {
 
-
-
     @FXML
     public AnchorPane anchor;
     public VBox vbox;
@@ -58,12 +56,16 @@ public class Controller {
     }
 
     public void undo(){
-        caretaker.addRedo(originator.saveState());
-        originator.setState(caretaker.popUndo());
+        if(caretaker.hasUndos()) {
+            caretaker.addRedo(originator.saveState());
+            originator.setState(caretaker.popUndo());
+        }
     }
 
     public void redo(){
-        caretaker.addUndo(originator.saveState());
-        originator.setState(caretaker.popRedo());
+        if(caretaker.hasRedos()) {
+            caretaker.addUndo(originator.saveState());
+            originator.setState(caretaker.popRedo());
+        }
     }
 }
