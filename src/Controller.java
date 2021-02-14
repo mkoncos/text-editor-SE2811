@@ -3,11 +3,14 @@ import MementoPattern.Memento;
 import MementoPattern.Originator;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 
 public class Controller {
 
@@ -15,6 +18,7 @@ public class Controller {
     public AnchorPane anchor;
     public VBox vbox;
     public TextArea textArea;
+    public ColorPicker colorPicker;
 
     public Originator originator;
     public Caretaker caretaker;
@@ -66,5 +70,23 @@ public class Controller {
             caretaker.addUndo(originator.saveState());
             originator.setState(caretaker.popRedo());
         }
+    }
+
+    @FXML
+    private void changeColor(){
+        textArea.setStyle("-fx-text-fill: " + toRgbString(colorPicker.getValue()) + ";");
+        newState();
+    }
+
+    private String toRgbString(Color c) {
+        return "rgb("
+            + to255Int(c.getRed())
+            + "," + to255Int(c.getGreen())
+            + "," + to255Int(c.getBlue())
+            + ")";
+    }
+
+    private int to255Int(double d) {
+        return (int) (d * 255);
     }
 }
