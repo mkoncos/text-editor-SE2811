@@ -1,17 +1,17 @@
 package MementoPattern;
 
 public class Memento {
-    private String state;
+    private TextAreaState state;
 
-    public Memento(String state){
+    public Memento(TextAreaState state){
         this.state = state;
     }
 
-    public String getState() {
+    public TextAreaState getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(TextAreaState state) {
         this.state = state;
     }
 

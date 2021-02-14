@@ -1,6 +1,7 @@
 import MementoPattern.Caretaker;
 import MementoPattern.Memento;
 import MementoPattern.Originator;
+import MementoPattern.TextAreaState;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ColorPicker;
@@ -11,6 +12,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Controller {
 
@@ -23,37 +27,50 @@ public class Controller {
     public Originator originator;
     public Caretaker caretaker;
 
+    private boolean shouldCreateNewState = true;
+
     public void initialize(){
         vbox.prefWidthProperty().bind(anchor.widthProperty());
         vbox.prefHeightProperty().bind(anchor.heightProperty());
-        textArea.setOnKeyPressed(new EventHandler<KeyEvent>() {
 
-            @Override
-            public void handle(KeyEvent event) {
-                if ((event.getCode() == KeyCode.Z || event.getCode() == KeyCode.Y)
-                        && event.isShortcutDown()) {
-                    event.consume();
-                    if (event.getCode() == KeyCode.Z && event.isShortcutDown()){
-                        System.out.println("we got here");
-                        undo();
-                        System.out.println("then here");
-                    } else if (event.getCode() == KeyCode.Y && event.isShortcutDown()){
-                        redo();
-                    }
-
-                } else if (event.getCode() == KeyCode.SPACE || event.getCode() == KeyCode.ENTER) {
-                    newState();
-                }
-
-            }
-        });
+        initializeStateSaver(0.5);
+        initializeKeyListener();
 
         originator = new Originator();
         caretaker = new Caretaker();
     }
 
+    private void initializeKeyListener(){
+        textArea.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.Z && event.isShortcutDown()){
+                event.consume();
+                undo();
+            } else if (event.getCode() == KeyCode.Y && event.isShortcutDown()){
+                event.consume();
+                redo();
+            }
+        });
+
+        textArea.setOnKeyTyped(event -> {
+            if(!event.isShortcutDown() && shouldCreateNewState){
+                newState();
+                shouldCreateNewState = false;
+            }
+        });
+    }
+
+    private void initializeStateSaver(double secondsBetweenSaves){
+        new Timer().schedule(
+                new TimerTask() {
+                    @Override
+                    public void run() {
+                        shouldCreateNewState = true;
+                    }
+                }, 0, (long)(secondsBetweenSaves*1000));
+    }
+
     public void newState(){
-        originator.setState(new Memento(textArea.getText()));
+        originator.setState(new TextAreaState(textArea));
         caretaker.addUndo(originator.saveState());
         caretaker.clearRedos();
     }
@@ -61,14 +78,20 @@ public class Controller {
     public void undo(){
         if(caretaker.hasUndos()) {
             caretaker.addRedo(originator.saveState());
-            originator.setState(caretaker.popUndo());
+
+            Memento undo = caretaker.popUndo();
+            originator.loadState(undo);
+            undo.getState().apply(textArea);
         }
     }
 
     public void redo(){
         if(caretaker.hasRedos()) {
             caretaker.addUndo(originator.saveState());
-            originator.setState(caretaker.popRedo());
+
+            Memento redo = caretaker.popRedo();
+            originator.loadState(redo);
+            redo.getState().apply(textArea);
         }
     }
 
