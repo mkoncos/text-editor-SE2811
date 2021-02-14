@@ -22,26 +22,22 @@ public class Controller {
     public void initialize(){
         vbox.prefWidthProperty().bind(anchor.widthProperty());
         vbox.prefHeightProperty().bind(anchor.heightProperty());
-        textArea.setOnKeyPressed(new EventHandler<KeyEvent>() {
-
-            @Override
-            public void handle(KeyEvent event) {
-                if ((event.getCode() == KeyCode.Z || event.getCode() == KeyCode.Y)
-                        && event.isShortcutDown()) {
-                    event.consume();
-                    if (event.getCode() == KeyCode.Z && event.isShortcutDown()){
-                        System.out.println("we got here");
-                        undo();
-                        System.out.println("then here");
-                    } else if (event.getCode() == KeyCode.Y && event.isShortcutDown()){
-                        redo();
-                    }
-
-                } else if (event.getCode() == KeyCode.SPACE || event.getCode() == KeyCode.ENTER) {
-                    newState();
+        textArea.setOnKeyPressed(event -> {
+            if ((event.getCode() == KeyCode.Z || event.getCode() == KeyCode.Y)
+                    && event.isShortcutDown()) {
+                event.consume();
+                if (event.getCode() == KeyCode.Z && event.isShortcutDown()){
+                    System.out.println("we got here");
+                    undo();
+                    System.out.println("then here");
+                } else if (event.getCode() == KeyCode.Y && event.isShortcutDown()){
+                    redo();
                 }
 
+            } else if (event.getCode() == KeyCode.SPACE || event.getCode() == KeyCode.ENTER) {
+                newState();
             }
+
         });
 
         originator = new Originator();
