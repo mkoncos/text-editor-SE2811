@@ -35,7 +35,6 @@ public class Caretaker {
 
     public void addRedo(Memento redo){
         redos.addFirst(redo);
-        System.out.println(redos.size());
     }
 
     public Memento popRedo(){

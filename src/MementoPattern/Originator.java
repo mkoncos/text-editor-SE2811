@@ -1,19 +1,21 @@
 package MementoPattern;
 
 public class Originator {
-    private String currentState;
+    private TextAreaState currentState;
 
-    public String getCurrentState(){
+    public TextAreaState getState(){
         return currentState;
     }
 
-    public Memento saveState(){
+    public void setState(TextAreaState state){
+        currentState = state;
+    }
 
+    public Memento saveState(){
         return new Memento(currentState);
     }
 
-    public void setState(Memento memento){
-        System.out.println("heello from set state");
+    public void loadState(Memento memento){
         currentState = memento.getState();
     }
 }
