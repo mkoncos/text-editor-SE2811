@@ -18,4 +18,8 @@ public class TextAreaState {
         textArea.setText(text);
         textArea.positionCaret(caretPosition);
     }
+
+    public String toString(){
+        return style + "\n" + caretPosition + "\n" + text;
+    }
 }
