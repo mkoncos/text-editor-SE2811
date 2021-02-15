@@ -4,7 +4,6 @@ import java.util.LinkedList;
 
 public class Caretaker {
     private final int MAX_UNDO_AMOUNT = 50;
-    private int undoSize;
     private LinkedList<Memento> undos;
     private LinkedList<Memento> redos;
 
@@ -15,8 +14,7 @@ public class Caretaker {
 
     public void addUndo(Memento undo){
         undos.addFirst(undo);
-        undoSize++;
-        if(undoSize > MAX_UNDO_AMOUNT){
+        if(undos.size() > MAX_UNDO_AMOUNT){
             undos.removeLast();
         }
     }
@@ -43,5 +41,24 @@ public class Caretaker {
 
     public void clearRedos(){
         redos.clear();
+    }
+
+    /**
+     * for debugging
+     */
+    public void printStackSizes(){
+        String r = ":";
+        for(int i = 0; i < redos.size();i++){
+            r += "|";
+        }
+
+        String u = ":";
+        for(int i = 0; i < undos.size();i++){
+            u += "|";
+        }
+
+        System.out.println("U/R");
+        System.out.println(u);
+        System.out.println(r);
     }
 }

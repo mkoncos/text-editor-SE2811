@@ -2,6 +2,8 @@ import MementoPattern.Caretaker;
 import MementoPattern.Memento;
 import MementoPattern.Originator;
 import MementoPattern.TextAreaState;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ColorPicker;
@@ -52,7 +54,7 @@ public class Controller {
         });
 
         textArea.setOnKeyTyped(event -> {
-            if(!event.isShortcutDown() && shouldCreateNewState){
+            if(shouldCreateNewState && !event.isShortcutDown()){
                 newState();
                 shouldCreateNewState = false;
             }
