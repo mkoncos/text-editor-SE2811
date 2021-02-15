@@ -52,7 +52,7 @@ public class Controller {
         });
 
         textArea.setOnKeyTyped(event -> {
-            if(!event.isShortcutDown() && shouldCreateNewState){
+            if(shouldCreateNewState && !event.isShortcutDown()){
                 newState();
                 shouldCreateNewState = false;
             }
