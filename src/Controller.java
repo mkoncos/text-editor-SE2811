@@ -78,7 +78,8 @@ public class Controller {
         choiceBox.getItems().addAll(fonts);
         choiceBox.getSelectionModel().selectedIndexProperty().addListener(
             (ObservableValue<? extends Number> ov, Number old_val, Number new_val) -> {
-                textArea.setStyle("-fx-font-family:" + fonts[new_val.intValue()]);
+                textArea.setStyle(textArea.getStyle() + "-fx-font-family:" + fonts[new_val.intValue()] + ";");
+                newState();
             });
     }
 
@@ -120,13 +121,13 @@ public class Controller {
 
     @FXML
     private void changeColor(){
-        textArea.setStyle("-fx-text-fill: " + toRgbString(colorPicker.getValue()) + ";");
+        textArea.setStyle(textArea.getStyle() + "-fx-text-fill: " + toRgbString(colorPicker.getValue()) + ";");
         newState();
     }
 
     @FXML
     private void changeSize(){
-        textArea.setStyle("-fx-font-size: " + sizeField.getText());
+        textArea.setStyle(textArea.getStyle() + "-fx-font-size: " + sizeField.getText() + ";");
         newState();
     }
 

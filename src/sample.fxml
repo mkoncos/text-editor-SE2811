@@ -40,9 +40,6 @@
                   </items>
                 </Menu>
                   <Menu mnemonicParsing="false" text="Font">
-                    <items>
-                      <MenuItem mnemonicParsing="false" text="Action 1" />
-                    </items>
                      <graphic>
                         <ChoiceBox fx:id="choiceBox" prefWidth="150.0" />
                      </graphic>
