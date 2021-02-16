@@ -8,6 +8,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -25,6 +26,7 @@ public class Controller {
     public VBox vbox;
     public TextArea textArea;
     public ColorPicker colorPicker;
+    public TextField sizeField;
 
     public Originator originator;
     public Caretaker caretaker;
@@ -100,6 +102,11 @@ public class Controller {
     @FXML
     private void changeColor(){
         textArea.setStyle("-fx-text-fill: " + toRgbString(colorPicker.getValue()) + ";");
+        newState();
+    }
+    @FXML
+    private void changeSize(){
+        textArea.setStyle("-fx-font-size: " + sizeField.getText());
         newState();
     }
 
