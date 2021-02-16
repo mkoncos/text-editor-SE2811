@@ -4,8 +4,10 @@ import MementoPattern.Originator;
 import MementoPattern.TextAreaState;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -27,6 +29,7 @@ public class Controller {
     public TextArea textArea;
     public ColorPicker colorPicker;
     public TextField sizeField;
+    public ChoiceBox<String> choiceBox;
 
     public Originator originator;
     public Caretaker caretaker;
@@ -39,6 +42,7 @@ public class Controller {
 
         initializeStateSaver(0.5);
         initializeKeyListener();
+        initializeChoiceBoxListener();
 
         originator = new Originator();
         caretaker = new Caretaker();
@@ -61,6 +65,21 @@ public class Controller {
                 shouldCreateNewState = false;
             }
         });
+    }
+
+    private void initializeChoiceBoxListener(){
+        String[] fonts = new String[]{
+            "Times New Roman",
+            "Georgia",
+            "Arial",
+            "Verdana",
+            "Helvetica"
+        };
+        choiceBox.getItems().addAll(fonts);
+        choiceBox.getSelectionModel().selectedIndexProperty().addListener(
+            (ObservableValue<? extends Number> ov, Number old_val, Number new_val) -> {
+                textArea.setStyle("-fx-font-family:" + fonts[new_val.intValue()]);
+            });
     }
 
     private void initializeStateSaver(double secondsBetweenSaves){
@@ -104,6 +123,7 @@ public class Controller {
         textArea.setStyle("-fx-text-fill: " + toRgbString(colorPicker.getValue()) + ";");
         newState();
     }
+
     @FXML
     private void changeSize(){
         textArea.setStyle("-fx-font-size: " + sizeField.getText());
