@@ -7,6 +7,14 @@ package MementoPattern;
 
 import javafx.scene.control.TextArea;
 
+/**
+ * Represents the state of a TextArea.
+ * Holds and manages the conversion of a TextArea
+ * to and from its state.
+ *
+ * The state consists of the text, style, and caret
+ * position of the TextArea.
+ */
 public class TextAreaState {
     private String style;
     private String text;

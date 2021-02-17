@@ -5,6 +5,11 @@
  */
 package MementoPattern;
 
+/**
+ * Holds a TextAreaState. Multiple Mementos are
+ * kept in the Caretaker and reapplied  to the
+ * Originator when needed.
+ */
 public class Memento {
     private TextAreaState state;
 
