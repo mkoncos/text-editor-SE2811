@@ -5,8 +5,11 @@
  */
 package MementoPattern;
 
-import java.awt.*;
-
+/**
+ * Holds the current state of the program. Can have its
+ * state updated with Mementos and can save its state to
+ * a new Memento.
+ */
 public class Originator {
     private TextAreaState currentState;
 

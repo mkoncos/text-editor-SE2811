@@ -7,8 +7,14 @@ package MementoPattern;
 
 import java.util.LinkedList;
 
+/**
+ * Holds and manages Mementos.
+ * The undos list holds Mementos that are to be applied when the user undoes their last action.
+ * The redos list holds undos that were made so that they may be applied back.
+ */
 public class Caretaker {
     private final int MAX_UNDO_AMOUNT = 50;
+
     private LinkedList<Memento> undos;
     private LinkedList<Memento> redos;
 
