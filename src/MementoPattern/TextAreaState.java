@@ -13,15 +13,19 @@ public class TextAreaState {
     private int caretPosition;
 
     public TextAreaState(TextArea textArea){
-        style = textArea.getStyle();
-        text = textArea.getText();
-        caretPosition = textArea.getCaretPosition();
+        update(textArea);
     }
 
     public void apply(TextArea textArea){
-        textArea.setStyle(style);
         textArea.setText(text);
         textArea.positionCaret(caretPosition);
+        textArea.setStyle(style);
+    }
+
+    public void update(TextArea textArea){
+        style = textArea.getStyle();
+        text = textArea.getText();
+        caretPosition = textArea.getCaretPosition();
     }
 
     public String toString(){

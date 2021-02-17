@@ -5,8 +5,14 @@
  */
 package MementoPattern;
 
+import java.awt.*;
+
 public class Originator {
     private TextAreaState currentState;
+
+    public Originator(TextAreaState currentState){
+        this.currentState = currentState;
+    }
 
     public TextAreaState getState(){
         return currentState;

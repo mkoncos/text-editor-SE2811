@@ -66,4 +66,8 @@ public class Caretaker {
         System.out.println(u);
         System.out.println(r);
     }
+
+    public void printTopUndo(){
+        System.out.println(undos.peekFirst().getState());
+    }
 }
