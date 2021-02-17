@@ -34,11 +34,12 @@
                            </graphic></MenuItem>
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
-                  </items>
-                </Menu>
+                  <Menu mnemonicParsing="false" text="Style">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#bold" text="Bold" />
+                        <MenuItem mnemonicParsing="false" onAction="#italic" text="Italic" />
+                    </items>
+                  </Menu>
                   <Menu mnemonicParsing="false" text="Font">
                      <graphic>
                         <ChoiceBox fx:id="choiceBox" prefWidth="150.0" />

@@ -120,6 +120,18 @@ public class Controller {
     }
 
     @FXML
+    private void bold(){
+        textArea.setStyle(textArea.getStyle() + "-fx-font-weight: bold;");
+        newState();
+    }
+
+    @FXML
+    private void italic(){
+        textArea.setStyle(textArea.getStyle() + "-fx-font-style: italic;");
+        newState();
+    }
+
+    @FXML
     private void changeColor(){
         textArea.setStyle(textArea.getStyle() + "-fx-text-fill: " + toRgbString(colorPicker.getValue()) + ";");
         newState();
