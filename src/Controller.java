@@ -2,21 +2,13 @@ import MementoPattern.Caretaker;
 import MementoPattern.Memento;
 import MementoPattern.Originator;
 import MementoPattern.TextAreaState;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -30,6 +22,8 @@ public class Controller {
     public ColorPicker colorPicker;
     public TextField sizeField;
     public ChoiceBox<String> choiceBox;
+    public CheckMenuItem boldCheck;
+    public CheckMenuItem italicCheck;
 
     public Originator originator;
     public Caretaker caretaker;
@@ -69,7 +63,6 @@ public class Controller {
 
     private void initializeChoiceBoxListener(){
         String[] fonts = new String[]{
-            "Times New Roman",
             "Georgia",
             "Arial",
             "Verdana",
@@ -78,7 +71,7 @@ public class Controller {
         choiceBox.getItems().addAll(fonts);
         choiceBox.getSelectionModel().selectedIndexProperty().addListener(
             (ObservableValue<? extends Number> ov, Number old_val, Number new_val) -> {
-                textArea.setStyle(textArea.getStyle() + "-fx-font-family:" + fonts[new_val.intValue()] + ";");
+                textArea.setStyle(textArea.getStyle() + "-fx-font-family:" + fonts[new_val.intValue()]  + ";");
                 newState();
             });
     }
@@ -121,13 +114,21 @@ public class Controller {
 
     @FXML
     private void bold(){
-        textArea.setStyle(textArea.getStyle() + "-fx-font-weight: bold;");
+        if(boldCheck.isSelected()) {
+            textArea.setStyle(textArea.getStyle() + "-fx-font-weight: bold;");
+        } else {
+            textArea.setStyle(textArea.getStyle() + "-fx-font-weight: normal;");
+        }
         newState();
     }
 
     @FXML
     private void italic(){
-        textArea.setStyle(textArea.getStyle() + "-fx-font-style: italic;");
+        if(italicCheck.isSelected()) {
+            textArea.setStyle(textArea.getStyle() + "-fx-font-style: italic;");
+        } else {
+            textArea.setStyle(textArea.getStyle() + "-fx-font-style: normal;");
+        }
         newState();
     }
 
