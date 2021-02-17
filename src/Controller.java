@@ -103,8 +103,6 @@ public class Controller {
         caretaker.addUndo(originator.saveState());
         originator.setState(new TextAreaState(textArea));
         caretaker.clearRedos();
-
-        caretaker.printTopUndo();
     }
 
     public void undo(){
