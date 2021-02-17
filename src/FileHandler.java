@@ -1,3 +1,8 @@
+/*
+ * SE 2811- Presentation
+ * FileHandler Class
+ * Matej Koncos, Ian Gresser, Garin Jankowski
+ */
 import MementoPattern.Caretaker;
 import MementoPattern.Originator;
 import javafx.scene.control.TextArea;

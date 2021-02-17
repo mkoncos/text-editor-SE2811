@@ -1,3 +1,8 @@
+/*
+ * SE 2811- Presentation
+ * TextAreaState Class
+ * Matej Koncos, Ian Gresser, Garin Jankowski
+ */
 package MementoPattern;
 
 import javafx.scene.control.TextArea;

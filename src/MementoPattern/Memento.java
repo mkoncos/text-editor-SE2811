@@ -1,3 +1,8 @@
+/*
+ * SE 2811- Presentation
+ * Memento Class
+ * Matej Koncos, Ian Gresser, Garin Jankowski
+ */
 package MementoPattern;
 
 public class Memento {

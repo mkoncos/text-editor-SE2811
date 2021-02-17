@@ -1,3 +1,8 @@
+/*
+ * SE 2811- Presentation
+ * CareTaker Class
+ * Matej Koncos, Ian Gresser, Garin Jankowski
+ */
 package MementoPattern;
 
 import java.util.LinkedList;

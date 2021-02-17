@@ -1,3 +1,8 @@
+/*
+ * SE 2811- Presentation
+ * Controller Class
+ * Matej Koncos, Ian Gresser, Garin Jankowski
+ */
 import MementoPattern.Caretaker;
 import MementoPattern.Memento;
 import MementoPattern.Originator;
@@ -13,23 +18,36 @@ import javafx.scene.paint.Color;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * This class controls the flow of the user edits on the text
+ */
 public class Controller {
 
     @FXML
-    public AnchorPane anchor;
-    public VBox vbox;
-    public TextArea textArea;
-    public ColorPicker colorPicker;
-    public TextField sizeField;
-    public ChoiceBox<String> choiceBox;
-    public CheckMenuItem boldCheck;
-    public CheckMenuItem italicCheck;
+    private AnchorPane anchor;
+    @FXML
+    private VBox vbox;
+    @FXML
+    private TextArea textArea;
+    @FXML
+    private ColorPicker colorPicker;
+    @FXML
+    private TextField sizeField;
+    @FXML
+    private ChoiceBox<String> choiceBox;
+    @FXML
+    private CheckMenuItem boldCheck;
+    @FXML
+    private CheckMenuItem italicCheck;
 
-    public Originator originator;
-    public Caretaker caretaker;
+    private Originator originator;
+    private Caretaker caretaker;
 
     private boolean shouldCreateNewState = true;
 
+    /**
+     * Initializes the GUI
+     */
     public void initialize(){
         vbox.prefWidthProperty().bind(anchor.widthProperty());
         vbox.prefHeightProperty().bind(anchor.heightProperty());
@@ -42,6 +60,10 @@ public class Controller {
         caretaker = new Caretaker();
     }
 
+    /**
+     * Initializes the listener for undo and redo shortcuts, also the listener
+     * for new Memento creation.
+     */
     private void initializeKeyListener(){
         textArea.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.Z && event.isShortcutDown()){
@@ -61,6 +83,9 @@ public class Controller {
         });
     }
 
+    /**
+     * Initializes the listener for the choice box, allows for swift font change
+     */
     private void initializeChoiceBoxListener(){
         String[] fonts = new String[]{
             "Georgia",
@@ -76,6 +101,10 @@ public class Controller {
             });
     }
 
+    /**
+     * Initializes the schedule for new memento creation
+     * @param secondsBetweenSaves the amount of seconds before new memento created
+     */
     private void initializeStateSaver(double secondsBetweenSaves){
         new Timer().schedule(
                 new TimerTask() {
@@ -86,13 +115,20 @@ public class Controller {
                 }, 0, (long)(secondsBetweenSaves*1000));
     }
 
-    public void newState(){
+    /**
+     * Creates a new save using the originator and caretaker of the memento pattern
+     */
+    private void newState(){
         originator.setState(new TextAreaState(textArea));
         caretaker.addUndo(originator.saveState());
         caretaker.clearRedos();
     }
 
-    public void undo(){
+    /**
+     * Performs and undo using the Memento pattern
+     */
+    @FXML
+    private void undo(){
         if(caretaker.hasUndos()) {
             caretaker.addRedo(originator.saveState());
 
@@ -102,7 +138,11 @@ public class Controller {
         }
     }
 
-    public void redo(){
+    /**
+     * Performs a redo using the Memento pattern
+     */
+    @FXML
+    private void redo(){
         if(caretaker.hasRedos()) {
             caretaker.addUndo(originator.saveState());
 
